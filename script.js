@@ -14,3 +14,7 @@ document.querySelector('.contact-form').addEventListener('submit', e => {
   alert("Thank you for contacting Mahato Realty! We'll reach you soon.");
   e.target.reset();
 });
+
+document.querySelector('.details-btn').addEventListener('click', () => {
+  document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+});
