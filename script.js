@@ -19,28 +19,25 @@ document.querySelector('.details-btn').addEventListener('click', () => {
   document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
 });
 
-// Theme toggle: persist selection in localStorage
-const themeToggle = document.getElementById('theme-toggle');
-function applyTheme(theme) {
-  if (theme === 'dark') document.body.classList.add('dark-theme');
-  else document.body.classList.remove('dark-theme');
-}
+// Mobile nav toggle
+const navbar = document.querySelector('.navbar');
+const navToggle = document.createElement('button');
+navToggle.id = 'nav-toggle';
+navToggle.className = 'nav-toggle';
+navToggle.setAttribute('aria-label', 'Toggle navigation');
+navToggle.textContent = '☰';
 
-function updateToggleIcon() {
-  if (!themeToggle) return;
-  const isDark = document.body.classList.contains('dark-theme');
-  themeToggle.textContent = isDark ? '☀️' : '🌙';
-}
+// Insert toggle button before nav
+const nav = document.querySelector('.navbar nav');
+if (nav) {
+  nav.parentElement.insertBefore(navToggle, nav);
 
-// initialize
-const saved = localStorage.getItem('site-theme');
-if (saved) applyTheme(saved);
-updateToggleIcon();
+  navToggle.addEventListener('click', () => {
+    navbar.classList.toggle('nav-open');
+  });
 
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark-theme');
-    localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
-    updateToggleIcon();
+  // Close mobile nav when a link is clicked
+  document.querySelectorAll('.navbar nav a').forEach(a => {
+    a.addEventListener('click', () => navbar.classList.remove('nav-open'));
   });
 }
