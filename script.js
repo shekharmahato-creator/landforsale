@@ -11,7 +11,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Contact form simple alert
 document.querySelector('.contact-form').addEventListener('submit', e => {
   e.preventDefault();
-  alert("Thank you for contacting Mahato Realty! We'll reach you soon.");
+  alert("Thank you for contacting SLH Properties! We'll reach you soon.");
   e.target.reset();
 });
 
